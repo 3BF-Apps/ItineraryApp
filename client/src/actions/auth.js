@@ -18,8 +18,7 @@ export const registerUser = (userData, history) => dispatch => {
             //     payload: err.response.data
             // })
             alert(JSON.stringify(err.response.data.errorMessage));
-        }
-        );
+        });
 };
 
 // Login -Get User token
@@ -63,5 +62,5 @@ export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken");
     // Remove auth header for future requests
     setAuthToken(false);
-    dispatch({type: LOG_OUT});
+    dispatch({ type: LOG_OUT });
 }

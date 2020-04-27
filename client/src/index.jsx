@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import App from './components/App.jsx';
-import store from './store/index.js';
+import store from './store/Index.js';
 import { signIn, saveItinerary, saveItineraryDB, saveItineraryDBById, addEvent, clearCurrentItinerary } from './actions/index.js';
 import { Provider } from "react-redux";
 
@@ -20,24 +20,24 @@ import jwt_decode from 'jwt-decode';
 
 // Check for token
 if (localStorage.jwtToken) {
-    // Set auth token header auth
-    setAuthToken(localStorage.jwtToken);
-    // Decode token and get user info and exp
-    const decoded = jwt_decode(localStorage.jwtToken);
-    // Set user and isAuthenticated
-    store.dispatch(setCurrentUser(decoded));
+  // Set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(localStorage.jwtToken);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
 
 
-    // Check for expired token
-    const currentTime = Date.now() / 1000;
-    if (decoded.exp < currentTime) {
-        //Logout the user
-        store.dispatch(logoutUser());
-        store.dispatch(clearCurrentItinerary());
+  // Check for expired token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    //Logout the user
+    store.dispatch(logoutUser());
+    store.dispatch(clearCurrentItinerary());
 
-        //Redirect to login
-        window.location.href = "/sign-in";
-    }
+    //Redirect to login
+    window.location.href = "/sign-in";
+  }
 }
 
 ReactDom.render(<Provider store={store}><App /> </Provider>, document.getElementById('app'));

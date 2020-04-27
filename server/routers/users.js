@@ -57,7 +57,7 @@ router
 
                 if (passwordMatch) {
                     const jwt = issueToken(user)
-                    res.status(200).send({ token: jwt.token, expiresIn: jwt.expiresIn })
+                    res.status(200).send({ token: jwt.token, expires: jwt.expires })
                 } else {
                     res.status(400).send({ errorMessage: 'incorrect password' })
                 }
