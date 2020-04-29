@@ -69,7 +69,6 @@ class ConnectedSignIn extends React.Component {
     this.props.loginUser({ email: response.email, password: response.id });
   }
   render() {
-    // console.log(process.env.FACEBOOK_APP_ID.substr(0, 5))
     return (
       <div className='account-modal'>
         <Modal show={this.state.showModal} onHide={this.close} {...this.props}
